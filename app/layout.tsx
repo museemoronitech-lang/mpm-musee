@@ -4,6 +4,7 @@ import './globals.css'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import Toast from '@/components/Toast'
+import SplashScreen from '@/components/SplashScreen'
 
 const bebasNeue = Bebas_Neue({
   weight: '400',
@@ -37,6 +38,7 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${bebasNeue.variable} ${libreBaskerville.variable} ${dmMono.variable}`}>
       <body>
+        <SplashScreen />
         <Nav />
         {children}
         <Footer />

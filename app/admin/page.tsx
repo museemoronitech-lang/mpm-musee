@@ -9,6 +9,7 @@ import AdminSidebar from '@/components/admin/AdminSidebar'
 import AdminPhotos from '@/components/admin/AdminPhotos'
 import AdminArticles from '@/components/admin/AdminArticles'
 import AdminMedias from '@/components/admin/AdminMedias'
+import AdminParams from '@/components/admin/AdminParams'
 import { toast } from '@/components/Toast'
 
 const ADMIN_PASSWORD = 'Medina2025MPM'
@@ -122,17 +123,7 @@ export default function AdminPage() {
                 Section administrateurs — à venir.
               </div>
             )}
-            {section === 'params' && (
-              <div className="param-section">
-                <div className="param-title">Paramètres</div>
-                <p style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: 'var(--ink2)', marginBottom: '1rem' }}>
-                  Changer le mot de passe admin.
-                </p>
-                <input className="f-input" type="password" placeholder="Nouveau mot de passe" />
-                <input className="f-input" type="password" placeholder="Confirmer" style={{ marginTop: '0.5rem' }} />
-                <button className="a-add-btn" style={{ marginTop: '0.5rem' }}>Mettre à jour</button>
-              </div>
-            )}
+            {section === 'params' && <AdminParams toast={toast} />}
           </div>
         </div>
       </div>

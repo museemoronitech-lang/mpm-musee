@@ -13,6 +13,7 @@ export default function CollectionsPage() {
   const [tab, setTab] = useState<'periode' | 'auteurs'>('periode')
   const [activePeriode, setActivePeriode] = useState('sultanats')
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null)
+  const [activeAuthor, setActiveAuthor] = useState('')
 
   useEffect(() => {
     fetchPhotos().then(data => {
@@ -24,6 +25,9 @@ export default function CollectionsPage() {
         const found = data.find(p => p.id === photoId)
         if (found) setSelectedPhoto(found)
       }
+      // Auto-select first author from DB data
+      const firstAuthor = data.find(p => p.status === 'pub' && p.author)?.author ?? ''
+      if (firstAuthor) setActiveAuthor(firstAuthor)
     })
   }, [])
 
@@ -34,39 +38,49 @@ export default function CollectionsPage() {
 
   return (
     <div style={{ paddingTop: '52px' }}>
-      <div className="ctx-back-bar">
-        <Link className="ctx-back-btn" href="/">← Accueil</Link>
-        <span className="ctx-back-crumb">Collections</span>
-      </div>
-      <div className="page-banner">
-        <div className="page-banner-h1">Collections</div>
-        <p className="page-banner-sub">Archives photographiques organisées par période historique ou par photographe.</p>
-      </div>
-      <div className="coll-tabs">
-        <div
-          className={`coll-tab ${tab === 'periode' ? 'active' : ''}`}
-          onClick={() => setTab('periode')}
-        >
-          Par période historique
-        </div>
-        <div
-          className={`coll-tab ${tab === 'auteurs' ? 'active' : ''}`}
-          onClick={() => setTab('auteurs')}
-        >
-          Par photographe
-        </div>
-      </div>
-      {tab === 'periode' && (
-        <PeriodeSidebar
-          photos={photos}
-          activePeriode={activePeriode}
-          onSelect={setActivePeriode}
-          onPhotoClick={handlePhotoClick}
-        />
+      {selectedPhoto && (
+        <PhotoDetail photo={selectedPhoto} onClose={() => setSelectedPhoto(null)} />
       )}
-      {tab === 'auteurs' && (
-        <AuthorsGrid photos={photos} />
-      )}
+      <div id="collections-main" className={selectedPhoto ? 'hidden' : ''}>
+        <div className="ctx-back-bar">
+          <Link className="ctx-back-btn" href="/">← Accueil</Link>
+          <span className="ctx-back-crumb">Collections</span>
+        </div>
+        <div className="page-banner">
+          <div className="page-banner-h1">Collections</div>
+          <p className="page-banner-sub">Archives photographiques organisées par période historique ou par photographe.</p>
+        </div>
+        <div className="coll-tabs">
+          <div
+            className={`coll-tab ${tab === 'periode' ? 'active' : ''}`}
+            onClick={() => setTab('periode')}
+          >
+            Par période historique
+          </div>
+          <div
+            className={`coll-tab ${tab === 'auteurs' ? 'active' : ''}`}
+            onClick={() => setTab('auteurs')}
+          >
+            Par photographe
+          </div>
+        </div>
+        {tab === 'periode' && (
+          <PeriodeSidebar
+            photos={photos}
+            activePeriode={activePeriode}
+            onSelect={setActivePeriode}
+            onPhotoClick={handlePhotoClick}
+          />
+        )}
+        {tab === 'auteurs' && (
+          <AuthorsGrid
+            photos={photos}
+            activeAuthor={activeAuthor}
+            onAuthorSelect={setActiveAuthor}
+            onPhotoClick={handlePhotoClick}
+          />
+        )}
+      </div>
     </div>
   )
 }

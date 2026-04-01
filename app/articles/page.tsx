@@ -16,7 +16,7 @@ export default async function ArticlesPage() {
       </div>
       <div className="art-section" style={{ padding: '3rem 0' }}>
         <div className="art-grid-layout">
-          {articles.length ? articles.map(a => (
+          {articles.map(a => (
             <div className="art-item reveal" key={a.id}>
               <div className="art-kicker">{a.category || 'Article'}</div>
               <h3 className="art-h">{a.title}</h3>
@@ -25,14 +25,7 @@ export default async function ArticlesPage() {
                 Lire l'article →
               </button>
             </div>
-          )) : (
-            <div className="art-item">
-              <div className="art-kicker">Histoire · Société</div>
-              <h3 className="art-h">L'identité de Ngazidja à travers ses photographies</h3>
-              <p className="art-p">Ngazidja, île principale des Comores, concentre une grande partie de l'histoire visuelle de l'archipel.</p>
-              <button className="btn-outline-dark" style={{ fontSize: '0.6rem', padding: '0.55rem 1.2rem', marginTop: '1rem' }}>Lire l'article →</button>
-            </div>
-          )}
+          ))}
         </div>
       </div>
     </div>

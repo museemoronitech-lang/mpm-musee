@@ -4,7 +4,7 @@ import type { Photo, Article, Media } from '@/types'
 export async function fetchPhotos(): Promise<Photo[]> {
   const { data, error } = await supabase
     .from('photos')
-    .select('id,title,image_url,date_approx,periode,ref_code,status,author,context,created_at')
+    .select('id,title,image_url,date_approx,periode,ref_code,status,author,context,created_at,featured')
     .order('created_at', { ascending: false })
 
   if (error) {
@@ -23,6 +23,7 @@ export async function fetchPhotos(): Promise<Photo[]> {
     author: p.author || '',
     context: p.context || '',
     created_at: p.created_at,
+    featured: p.featured ?? false,
   }))
 }
 
@@ -52,4 +53,21 @@ export async function fetchMedias(): Promise<Media[]> {
   }
 
   return data || []
+}
+
+export async function fetchSetting(key: string): Promise<string | null> {
+  const { data, error } = await supabase
+    .from('settings')
+    .select('value')
+    .eq('key', key)
+    .single()
+
+  if (error || !data) return null
+  return data.value
+}
+
+export async function upsertSetting(key: string, value: string): Promise<void> {
+  await supabase
+    .from('settings')
+    .upsert({ key, value }, { onConflict: 'key' })
 }

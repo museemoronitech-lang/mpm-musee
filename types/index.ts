@@ -9,6 +9,7 @@ export interface Photo {
   author: string
   context: string
   created_at: string
+  featured?: boolean
 }
 
 export interface Article {

@@ -5,20 +5,20 @@ import { Photo } from '@/types'
 import PhotoCard from './PhotoCard'
 import Link from 'next/link'
 
-const TICKER_ITEMS = [
-  '2 400 photographies archivées',
-  'Moroni · Ngazidja',
-  'Archives 1880–1995',
-  'En partenariat avec le CNDRS',
-  'Musée de la Photographie de Moroni',
-  'Initiative Medina Wiratha',
-]
+interface HomeClientProps {
+  photos: Photo[]
+  heroAccueil?: string
+  heroNgazidja?: string
+}
 
-export default function HomeClient({ photos }: { photos: Photo[] }) {
-  const pub = photos.filter(p => p.image_url).slice(0, 6)
+export default function HomeClient({ photos, heroAccueil, heroNgazidja }: HomeClientProps) {
+  const featured = photos.filter(p => p.image_url && p.featured).slice(0, 6)
   const total = photos.length
   const pubCount = photos.filter(p => p.status === 'pub').length
   const heroBgRef = useRef<HTMLDivElement>(null)
+
+  const bgAccueil = heroAccueil || '/Accueil.png'
+  const bgNgazidja = heroNgazidja || '/Ngazidja.png'
 
   // Scroll reveal
   useEffect(() => {
@@ -50,21 +50,12 @@ export default function HomeClient({ photos }: { photos: Photo[] }) {
 
   return (
     <>
-      {/* TICKER */}
-      <div className="ticker-wrap">
-        <div className="ticker">
-          {[...TICKER_ITEMS, ...TICKER_ITEMS].map((t, i) => (
-            <span className="ticker-item" key={i}>{t}</span>
-          ))}
-        </div>
-      </div>
-
       {/* HERO */}
       <div className="home-grid">
         <div
           ref={heroBgRef}
           className="home-hero-bg"
-          style={{ backgroundImage: "url('/Accueil.png')" }}
+          style={{ backgroundImage: `url('${bgAccueil}')` }}
         />
         <div className="home-hero-overlay" />
         <div className="home-left">
@@ -98,10 +89,6 @@ export default function HomeClient({ photos }: { photos: Photo[] }) {
           <div className="home-info-strip-n">1880</div>
           <div className="home-info-strip-l">Archive la plus ancienne</div>
         </div>
-        <div className="home-info-strip-item reveal">
-          <div className="home-info-strip-n">2</div>
-          <div className="home-info-strip-l">Îles documentées</div>
-        </div>
       </div>
 
       {/* PARCOURS */}
@@ -115,7 +102,7 @@ export default function HomeClient({ photos }: { photos: Photo[] }) {
         </div>
         <div className="parcours-grid reveal-stagger">
           <Link className="parcours-card reveal" href="/collections?tab=periode">
-            <div className="parcours-card-img" style={{ backgroundImage: "url('/Accueil.png')" }} />
+            <div className="parcours-card-img" style={{ backgroundImage: `url('${bgAccueil}')` }} />
             <div className="parcours-photo-label">Sultanats · Coloniale · Indépendance</div>
             <div className="parcours-card-body">
               <div className="parcours-card-n">Parcours 01 / 02</div>
@@ -125,7 +112,7 @@ export default function HomeClient({ photos }: { photos: Photo[] }) {
             </div>
           </Link>
           <Link className="parcours-card reveal" href="/collections?tab=auteurs">
-            <div className="parcours-card-img" style={{ backgroundImage: "url('/Ngazidja.png')" }} />
+            <div className="parcours-card-img" style={{ backgroundImage: `url('${bgNgazidja}')` }} />
             <div className="parcours-photo-label">Humblot · CNDRS · Anonymes</div>
             <div className="parcours-card-body">
               <div className="parcours-card-n">Parcours 02 / 02</div>
@@ -144,11 +131,11 @@ export default function HomeClient({ photos }: { photos: Photo[] }) {
           <Link className="feat-hd-link" href="/collections">Parcourir la galerie →</Link>
         </div>
         <div className="photos-row reveal-stagger">
-          {pub.length ? pub.map(p => (
+          {featured.length ? featured.map(p => (
             <PhotoCard key={p.id} photo={p} />
           )) : (
             <div style={{ padding: '2rem', fontFamily: 'var(--mono)', fontSize: '0.7rem', color: 'var(--ink3)' }}>
-              Aucune photo publiée pour le moment.
+              Aucune photo mise en avant pour le moment.
             </div>
           )}
         </div>

@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react'
 import type { Photo } from '@/types'
 import UploadModal from '@/components/admin/UploadModal'
 import EditModal from '@/components/admin/EditModal'
+import { supabase } from '@/lib/supabase'
 
 interface AdminPhotosProps {
   photos: Photo[]
@@ -26,6 +27,7 @@ export default function AdminPhotos({
   const [uploadOpen, setUploadOpen] = useState(false)
   const [editPhoto, setEditPhoto] = useState<Photo | null>(null)
   const [editOpen, setEditOpen] = useState(false)
+  const [togglingId, setTogglingId] = useState<string | null>(null)
 
   const filtered = useMemo(() => {
     return photos.filter((p) => {
@@ -40,6 +42,14 @@ export default function AdminPhotos({
   const openEdit = (id: string) => {
     const p = photos.find((x) => x.id === id)
     if (p) { setEditPhoto(p); setEditOpen(true) }
+  }
+
+  const toggleFeatured = async (id: string, current: boolean) => {
+    setTogglingId(id)
+    const { error } = await supabase.from('photos').update({ featured: !current }).eq('id', id)
+    if (error) toast('Erreur mise à jour', true)
+    else onReload()
+    setTogglingId(null)
   }
 
   return (
@@ -78,13 +88,14 @@ export default function AdminPhotos({
             <th className="a-th">Date</th>
             <th className="a-th">Référence</th>
             <th className="a-th">Statut</th>
+            <th className="a-th">En avant</th>
             <th className="a-th">Actions</th>
           </tr>
         </thead>
         <tbody>
           {!filtered.length ? (
             <tr>
-              <td colSpan={7} style={{ padding: '2rem', textAlign: 'center', fontFamily: 'var(--mono)', fontSize: '0.68rem', color: 'var(--ink3)' }}>
+              <td colSpan={8} style={{ padding: '2rem', textAlign: 'center', fontFamily: 'var(--mono)', fontSize: '0.68rem', color: 'var(--ink3)' }}>
                 Aucune photo trouvée.
               </td>
             </tr>
@@ -105,6 +116,21 @@ export default function AdminPhotos({
                   <span className={`a-badge ${p.status === 'pub' ? 'a-pub' : 'a-draft'}`}>
                     {p.status === 'pub' ? 'Publié' : 'Brouillon'}
                   </span>
+                </td>
+                <td className="a-td">
+                  <button
+                    className="a-act"
+                    disabled={togglingId === p.id}
+                    style={{
+                      background: p.featured ? 'var(--ink)' : 'none',
+                      color: p.featured ? 'var(--cr)' : 'var(--ink3)',
+                      borderColor: p.featured ? 'var(--ink)' : 'var(--cr3)',
+                      minWidth: '52px',
+                    }}
+                    onClick={() => toggleFeatured(p.id, !!p.featured)}
+                  >
+                    {p.featured ? '★ Oui' : '☆ Non'}
+                  </button>
                 </td>
                 <td className="a-td">
                   <div className="a-act-row">

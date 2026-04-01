@@ -17,6 +17,20 @@ const SIDEBAR_ITEMS = [
   { id: 'independance', dates: '1975 — 1995', name: 'Post-Indépendance' },
 ]
 
+const numStyle: React.CSSProperties = {
+  position: 'absolute',
+  top: '0.5rem',
+  left: '0.5rem',
+  background: 'rgba(26,22,20,0.72)',
+  color: 'var(--cr)',
+  fontFamily: 'var(--mono)',
+  fontSize: '0.5rem',
+  letterSpacing: '0.12em',
+  padding: '0.18rem 0.42rem',
+  zIndex: 2,
+  pointerEvents: 'none',
+}
+
 export default function PeriodeSidebar({
   activePeriode,
   onSelect,
@@ -32,9 +46,9 @@ export default function PeriodeSidebar({
 
   const periodeData = PERIODES_DATA[activePeriode]
   const periodeKey = PERIODE_MAP[activePeriode]
-  const periodePhotos = photos
-    .filter((p) => p.status === 'pub' && p.periode === periodeKey && p.image_url)
-    .slice(0, 5)
+  const periodePhotos = photos.filter(
+    (p) => p.status === 'pub' && p.periode === periodeKey && p.image_url
+  )
 
   return (
     <div className="periode-grid">
@@ -76,6 +90,7 @@ export default function PeriodeSidebar({
                       style={i === 0 ? { gridColumn: '1/3' } : undefined}
                       onClick={() => onPhotoClick(p.id)}
                     >
+                      <span style={numStyle}>{String(i + 1).padStart(2, '0')}</span>
                       <div
                         className="periode-photo-img"
                         style={{ backgroundImage: `url('${p.image_url}')` }}
@@ -99,16 +114,18 @@ export default function PeriodeSidebar({
               </div>
             )}
 
-            <ScrollReveal>
-              <div className="periode-sub-items">
-                {periodeData.sub.map((s) => (
-                  <div className="periode-sub" key={s.name}>
-                    <div className="periode-sub-name">{s.name}</div>
-                    <div className="periode-sub-meta">{s.meta}</div>
-                  </div>
-                ))}
-              </div>
-            </ScrollReveal>
+            {periodeData.sub.length > 0 && (
+              <ScrollReveal>
+                <div className="periode-sub-items">
+                  {periodeData.sub.map((s) => (
+                    <div className="periode-sub" key={s.name}>
+                      <div className="periode-sub-name">{s.name}</div>
+                      <div className="periode-sub-meta">{s.meta}</div>
+                    </div>
+                  ))}
+                </div>
+              </ScrollReveal>
+            )}
           </>
         )}
       </div>
