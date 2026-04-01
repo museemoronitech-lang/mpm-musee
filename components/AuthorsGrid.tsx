@@ -29,7 +29,7 @@ export default function AuthorsGrid({ photos, activeAuthor, onAuthorSelect, onPh
   // Derive unique authors from actual DB photos
   const authors = [...new Set(pub.filter(p => p.author).map(p => p.author))].sort()
 
-  const authorPhotos = pub.filter(p => p.author === activeAuthor && p.image_url)
+  const authorPhotos = pub.filter(p => p.author === activeAuthor && !!p.image_url)
 
   return (
     <>
