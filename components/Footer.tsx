@@ -43,7 +43,7 @@ export default function Footer() {
         </div>
         <div className="footer-col">
           <div className="footer-col-title">Accès</div>
-          <Link className="footer-link" href="/admin">Interface Admin</Link>
+          <Link href="/admin" style={{ display: 'block', fontFamily: 'var(--mono)', fontSize: '0.56rem', color: 'rgba(242,237,228,0.2)', opacity: 0.4, padding: '0.25rem 0', textDecoration: 'none' }}>·</Link>
           <span className="footer-link">CNDRS</span>
         </div>
       </div>

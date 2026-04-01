@@ -388,7 +388,7 @@ footer{background:var(--ink);border-top:3px solid var(--rust)}
 
 /* ─── ABOUT PAGE SPECIFIC ─── */
 .about-hero{position:relative;background:var(--ink);padding:4rem 6vw 3rem;overflow:hidden;border-bottom:3px solid var(--rust)}
-.about-hero::before{content:'MPM';position:absolute;top:50%;left:55%;transform:translateY(-50%);font-family:var(--display);font-size:clamp(6rem,12vw,10rem);color:rgba(255,255,255,0.04);letter-spacing:0.12em;white-space:nowrap;pointer-events:none;z-index:0}
+.about-hero::before{content:none}
 .about-hero-eyebrow{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.18em;color:var(--rust);text-transform:uppercase;margin-bottom:1.2rem}
 .about-hero-title{font-family:var(--display);font-size:clamp(3.5rem,9vw,8rem);color:var(--cr);line-height:0.92;margin-bottom:1.8rem}
 .about-hero-title span{color:var(--rust)}
@@ -509,3 +509,43 @@ footer{background:var(--ink);border-top:3px solid var(--rust)}
 @media(max-width:600px){
   .about-hero,.about-identity-text,.about-identity-visual,.about-partners,.about-events,.about-fb-cta{padding-left:5vw;padding-right:5vw}
 }
+
+/* ─── PAGE PHOTO ─── */
+.photo-page{background:var(--ink);min-height:100vh}
+.photo-page .ctx-back-bar{background:rgba(26,22,20,0.96);border-bottom:1px solid rgba(255,255,255,0.07)}
+.photo-page .ctx-back-btn{color:rgba(242,237,228,0.38)}
+.photo-page .ctx-back-btn:hover{color:var(--rust)}
+.photo-page .ctx-back-crumb{color:rgba(242,237,228,0.45)}
+.photo-page .photo-detail-layout{background:var(--ink)}
+.photo-page .ph-stage{background:#0E0C0A;border-right:1px solid rgba(255,255,255,0.06)}
+.photo-page .ph-main-img{filter:none;box-shadow:0 4px 48px rgba(0,0,0,0.7);cursor:zoom-in}
+.photo-page .ph-main-img.zoomed{filter:none;cursor:zoom-out;max-height:none}
+.photo-page .ph-panel{background:var(--ink);border-left:none}
+.photo-page .ph-panel-top{background:var(--ink);border-bottom:1px solid rgba(255,255,255,0.07)}
+.photo-page .ph-panel-back{color:rgba(242,237,228,0.35)}
+.photo-page .ph-panel-back:hover{color:var(--rust)}
+.photo-page .ph-panel-title{color:var(--cr)}
+.photo-page .ph-meta-block{border-bottom:none}
+.photo-page .ph-meta-row{border-bottom:1px solid rgba(255,255,255,0.06);background:transparent}
+.photo-page .ph-meta-key{color:rgba(242,237,228,0.25)}
+.photo-page .ph-meta-val{color:rgba(242,237,228,0.82);font-weight:500}
+.photo-page .ph-ctx-block{border-bottom:1px solid rgba(255,255,255,0.06)}
+.photo-page .ph-ctx-label{color:var(--rust)}
+.photo-page .ph-ctx-p{color:rgba(242,237,228,0.58);font-weight:500}
+.photo-page .ph-tags-block{border-bottom:1px solid rgba(255,255,255,0.06)}
+.photo-page .ph-tag{border-color:rgba(255,255,255,0.1);color:rgba(242,237,228,0.3)}
+.photo-page .ph-tag:hover{border-color:var(--rust);color:var(--cr)}
+.photo-page .ph-ctrl-btn{background:rgba(255,255,255,0.06);border-right-color:rgba(255,255,255,0.06)}
+.photo-page .ph-ctrl-btn:hover{background:var(--rust)}
+.photo-page-ref{font-family:var(--mono);font-size:0.52rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--rust);padding:1.2rem 2rem 0;display:block}
+.photo-collection-badge{display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--mono);font-size:0.52rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(242,237,228,0.3);padding:0.5rem 0.9rem;border:1px solid rgba(255,255,255,0.08);margin:0 2rem 1.5rem}
+.photo-collection-badge::before{content:'';display:block;width:12px;height:1px;background:var(--rust)}
+.photo-nav{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(255,255,255,0.07)}
+.photo-nav-btn{padding:1.1rem 1.5rem;font-family:var(--mono);font-size:0.56rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(242,237,228,0.32);background:none;border:none;cursor:pointer;transition:all 0.2s;text-decoration:none;display:flex;align-items:center;gap:0.5rem}
+.photo-nav-btn:last-child{border-left:1px solid rgba(255,255,255,0.07);justify-content:flex-end}
+.photo-nav-btn:hover{color:var(--cr);background:rgba(255,255,255,0.03)}
+.photo-nav-btn.disabled{opacity:0.12;pointer-events:none}
+.photo-nav-thumb{width:32px;height:24px;background-size:cover;background-position:center;filter:saturate(0.1);opacity:0.6;flex-shrink:0}
+@media(max-width:768px){.photo-page .photo-detail-layout{grid-template-columns:1fr;grid-template-rows:auto auto}}
+@media(max-width:768px){.photo-page .ph-stage{max-height:55vw;min-height:280px}}
+@media(max-width:768px){.photo-page .ph-panel{max-height:none}}

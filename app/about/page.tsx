@@ -19,7 +19,7 @@ export default function AboutPage() {
           height={600}
           style={{
             position: 'absolute',
-            right: '-4rem',
+            right: 'calc(-4rem + 6vw)',
             top: '50%',
             transform: 'translateY(-50%)',
             opacity: 0.06,

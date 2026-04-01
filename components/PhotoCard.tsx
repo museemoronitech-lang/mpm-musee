@@ -9,7 +9,7 @@ interface PhotoCardProps {
 
 export default function PhotoCard({ photo }: PhotoCardProps) {
   return (
-    <Link className="prow-item photo-hover-wrap" href={`/collections?photo=${photo.id}`}>
+    <Link className="prow-item photo-hover-wrap" href={`/photo/${photo.id}`}>
       <div
         className="prow-img"
         style={{ backgroundImage: `url('${photo.image_url}')` }}

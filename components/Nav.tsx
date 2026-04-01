@@ -67,15 +67,6 @@ export default function Nav() {
           ))}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-          {pathname === '/admin' ? (
-            <span className="nav-admin-btn" style={{ cursor: 'default', opacity: 0.7 }}>
-              Admin
-            </span>
-          ) : (
-            <Link className="nav-admin-btn" href="/admin">
-              Admin ↗
-            </Link>
-          )}
           <button
             className="nav-hamburger"
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -94,13 +85,6 @@ export default function Nav() {
               {item.label}
             </Link>
           ))}
-          <Link
-            className="m-link"
-            href="/admin"
-            style={{ color: 'var(--rust)', marginTop: '20px' }}
-          >
-            Accès Admin ↗
-          </Link>
         </div>
       </div>
     </>
