@@ -46,7 +46,7 @@ export default function Nav() {
            className="nav-logo-img"
            src="/Logo_Medina_Wiratha.png"
             alt="Medina Wiratha"
-            style={{ height: '32px', width: 'auto' }}
+            style={{ height: '45px', width: 'auto' }}
           />
           <div className="nav-sep" />
           <div className="nav-full">
