@@ -32,7 +32,7 @@ export default function SplashScreen() {
       <img
         src="/Logo_Medina_Wiratha.png"
         alt="MPM"
-        style={{ height: '80px', filter: 'brightness(0) invert(1)' }}
+        style={{ height: '192px', width: 'auto', filter: 'brightness(0) invert(1)' }}
       />
     </div>
   )

@@ -13,8 +13,8 @@ export default function Footer() {
             src="/Logo_Medina_Wiratha.png"
             alt="Medina Wiratha"
             width={120}
-            height={38}
-            style={{ height: '38px', width: 'auto' }}
+            height={68}
+            style={{ height: '68px', width: 'auto' }}
             onError={(e) => {
               ;(e.target as HTMLImageElement).style.display = 'none'
             }}

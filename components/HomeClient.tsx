@@ -145,9 +145,8 @@ export default function HomeClient({ photos, heroAccueil, heroNgazidja }: HomeCl
       <div className="about-section reveal">
         <div className="about-text">
           <div className="about-big">Préserver<br />ce qui <span>disparaît</span></div>
-          <p className="about-p">Le Musée de la Photographie de Moroni est un projet culturel initié par <strong>Médina Wiratha</strong> — association fondée en août 2024 pour protéger et valoriser le patrimoine historique de la commune de Moroni et des Comores.</p>
-          <p className="about-p">Médina Wiratha, dont le nom signifie littéralement <em>« la Médina en héritage »</em>, s'inscrit dans la dynamique d'inscription des médinas comoriennes au patrimoine mondial de l'UNESCO.</p>
-          <p className="about-p">Chaque image est un document historique, un témoignage irremplaçable. Nous documentons chaque photo — date, lieu, auteur, contexte — pour transmettre ce patrimoine aux générations futures.</p>
+          <p className="about-p">Le Musée de la Photographie de Moroni est un projet culturel initié par <strong>Médina Wiratha</strong> — dont le nom signifie <em>« la Médina en héritage »</em> — association fondée en août 2024 pour protéger, valoriser et préserver le patrimoine historique de la commune de Moroni et des Comores.</p>
+          <p className="about-p">L'objectif de l'association Médina Wiratha c'est de protéger l'héritage de la Médina et mettre en valeur cet héritage. L'association regroupe des citoyens passionnés et amoureux de cet héritage du patrimoine culturel matériel et immatériel afin de perpétuer la mémoire de la ville de Moroni et autres à travers les générations. C'est ainsi qu'il est important de récolter toutes les images en notre possession afin de les sauvegarder et les mettre à la disposition du public.</p>
           <div className="about-logo-row">
             <img className="about-logo-img" src="/Logo_Medina_Wiratha.png" alt="Medina Wiratha" />
             <div className="about-logo-txt">Association Medina Wiratha<br />« Patrimoine de la medina »<br />Moroni, Comores · Fondée 2024</div>

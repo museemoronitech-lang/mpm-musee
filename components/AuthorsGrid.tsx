@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import type { Photo } from '@/types'
 
 interface AuthorsGridProps {
@@ -25,6 +26,18 @@ const numStyle: React.CSSProperties = {
 
 export default function AuthorsGrid({ photos, activeAuthor, onAuthorSelect, onPhotoClick }: AuthorsGridProps) {
   const pub = photos.filter(p => p.status === 'pub')
+  const photosSectionRef = useRef<HTMLDivElement>(null)
+  const isFirstRender = useRef(true)
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
+    if (activeAuthor && photosSectionRef.current) {
+      photosSectionRef.current.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [activeAuthor])
 
   // Derive unique authors from actual DB photos
   const authors = Array.from(new Set(pub.filter(p => p.author).map(p => p.author))).sort()
@@ -82,7 +95,7 @@ export default function AuthorsGrid({ photos, activeAuthor, onAuthorSelect, onPh
 
           {/* Photos for selected author */}
           {activeAuthor && (
-            <div style={{ padding: '2rem 3rem', borderTop: '2px solid var(--ink)' }}>
+            <div ref={photosSectionRef} style={{ padding: '2rem 3rem', borderTop: '2px solid var(--ink)' }}>
               <div style={{ fontFamily: 'var(--mono)', fontSize: '0.58rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--rust)', marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                 <span style={{ display: 'block', width: '20px', height: '1px', background: 'var(--rust)' }} />
                 {activeAuthor} — {authorPhotos.length} photographie{authorPhotos.length > 1 ? 's' : ''}

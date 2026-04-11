@@ -53,9 +53,10 @@ export default function AboutPage() {
         </div>
         <div className="about-intro-strip-sep"></div>
         <div className="about-intro-strip-item">
-          <div className="about-intro-n">UNESCO</div>
-          <div className="about-intro-l">Processus d&apos;inscription</div>
+          <div className="about-intro-n">Moroni</div>
+          <div className="about-intro-l">Siège de l&apos;association</div>
         </div>
+
       </div>
 
       {/* IDENTITÉ */}
