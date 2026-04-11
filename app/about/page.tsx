@@ -170,9 +170,9 @@ export default function AboutPage() {
         <p className="about-partners-sub">EN COLLABORATION AVEC</p>
         <div className="about-partners-grid">
           {[
-            'CNDRS', 'CNAC', 'UNESCO', 'Banque Mondiale',
-            'UCCIA', 'i2A', 'Fas Distribution', 'Nassib',
-            'Fondation Hazi', 'Seaview Artwork', 'Interface Prod', 'Cabinet Mzimba',
+            'Mairie de Moroni', 'CNDRS', 'Gouvernorat de Ngazidja',
+            'Collectif du Patrimoine des Comores', 'Zanzibar Stone Town Heritage Society',
+            'Le Fonds Pobeguin', 'Musée du Quai Branly',
           ].map(p => (
             <div className="about-partner-tag" key={p}>{p}</div>
           ))}

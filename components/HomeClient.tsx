@@ -87,7 +87,7 @@ export default function HomeClient({ photos, heroAccueil, heroNgazidja }: HomeCl
         </div>
         <div className="home-info-strip-item reveal">
           <div className="home-info-strip-n">1880</div>
-          <div className="home-info-strip-l">Archive la plus ancienne</div>
+          <div className="home-info-strip-l">Plus ancienne archive</div>
         </div>
       </div>
 
@@ -107,7 +107,7 @@ export default function HomeClient({ photos, heroAccueil, heroNgazidja }: HomeCl
             <div className="parcours-card-body">
               <div className="parcours-card-n">Parcours 01 / 02</div>
               <div className="parcours-card-name">Par Période</div>
-              <div className="parcours-card-sub">Sultanats · Époque Coloniale · Post-Indépendance<br />1880 — 1995</div>
+              <div className="parcours-card-sub"><span className="parcours-card-sub-desc">Sultanats · Époque Coloniale · Post-Indépendance</span><br className="parcours-card-sub-br" /><span>1880 — 1995</span></div>
               <span className="parcours-card-cta">Explorer la chronologie <span>→</span></span>
             </div>
           </Link>
@@ -117,7 +117,7 @@ export default function HomeClient({ photos, heroAccueil, heroNgazidja }: HomeCl
             <div className="parcours-card-body">
               <div className="parcours-card-n">Parcours 02 / 02</div>
               <div className="parcours-card-name">Par Auteurs</div>
-              <div className="parcours-card-sub">Photographes · Studios · Collections privées<br />6 fonds documentés</div>
+              <div className="parcours-card-sub"><span className="parcours-card-sub-desc">Photographes · Studios · Collections privées</span><br className="parcours-card-sub-br" /><span>6 fonds documentés</span></div>
               <span className="parcours-card-cta">Explorer les photographes <span>→</span></span>
             </div>
           </Link>

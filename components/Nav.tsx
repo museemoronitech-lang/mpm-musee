@@ -66,16 +66,14 @@ export default function Nav() {
             </Link>
           ))}
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-          <button
-            className="nav-hamburger"
-            onClick={() => setMobileOpen(!mobileOpen)}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
-        </div>
+        <button
+          className="nav-hamburger"
+          onClick={() => setMobileOpen(!mobileOpen)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       </nav>
 
       <div className={`mobile-menu${mobileOpen ? ' open' : ''}`}>

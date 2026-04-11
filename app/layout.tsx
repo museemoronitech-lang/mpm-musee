@@ -26,8 +26,11 @@ const dmMono = DM_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'MPM — Musée de la Photographie de Moroni',
+  title: 'Musée de la Photographie de Moroni',
   description: 'Plateforme de préservation et de valorisation du patrimoine photographique des Comores. Archives 1880–1995.',
+  icons: {
+    icon: '/favicon.png',
+  },
 }
 
 export default function RootLayout({
