@@ -55,6 +55,7 @@ export default function Nav() {
             Photographie de Moroni
           </div>
         </Link>
+        <div className="nav-vsep" />
         <div className="nav-links">
           {NAV_ITEMS.map((item) => (
             <Link
