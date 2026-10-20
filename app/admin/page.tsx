@@ -20,7 +20,8 @@ export default function AdminPage() {
   const [loginError, setLoginError] = useState(false)
   const [section, setSection] = useState<Section>('photos')
   const [photos, setPhotos] = useState<Photo[]>([])
-  const [pendingDelete, setPendingDelete] = useState<{ id: string; table: string } | null>(null)
+  const [pendingDelete, setPendingDelete] = useState<{ id: string | string[]; table: string } | null>(null)
+  const [selectedIds, setSelectedIds] = useState<string[]>([])
 
   useEffect(() => {
     if (sessionStorage.getItem('mpm_admin') === '1') setIsAdmin(true)
@@ -50,16 +51,39 @@ export default function AdminPage() {
     setIsAdmin(false)
   }
 
-  const handleDelete = (id: string, table: string) => {
+  const handleDelete = (id: string | string[], table: string) => {
     setPendingDelete({ id, table })
   }
 
   const confirmDelete = async () => {
     if (!pendingDelete) return
-    await supabase.from(pendingDelete.table).delete().eq('id', pendingDelete.id)
-    toast('Supprimé ✓')
+    const ids = Array.isArray(pendingDelete.id) ? pendingDelete.id : [pendingDelete.id]
+    await supabase.from(pendingDelete.table).delete().in('id', ids)
+    toast(ids.length > 1 ? `${ids.length} éléments supprimés ✓` : 'Supprimé ✓')
     setPendingDelete(null)
-    if (pendingDelete.table === 'photos') loadPhotos()
+    if (pendingDelete.table === 'photos') {
+      setSelectedIds(prev => prev.filter(i => !ids.includes(i)))
+      loadPhotos()
+    }
+  }
+
+  // ── Sélection multiple ──
+  const toggleSelect = (id: string) =>
+    setSelectedIds(prev => (prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]))
+  const selectAll = (ids: string[]) => setSelectedIds(ids)
+  const clearSelection = () => setSelectedIds([])
+
+  // Modifie en un clic un champ (période, collection, source, photographe, statut)
+  // pour toutes les photos sélectionnées
+  const bulkUpdate = async (patch: Partial<Pick<Photo, 'periode' | 'collection' | 'source' | 'author' | 'status' | 'featured'>>) => {
+    if (selectedIds.length === 0) return
+    const { error } = await supabase.from('photos').update(patch).in('id', selectedIds)
+    if (error) {
+      toast('Erreur : ' + error.message, true)
+      return
+    }
+    toast(`${selectedIds.length} photo(s) mise(s) à jour ✓`)
+    loadPhotos()
   }
 
   const now = new Date()
@@ -110,6 +134,11 @@ export default function AdminPage() {
                 onReload={loadPhotos}
                 toast={toast}
                 onDelete={handleDelete}
+                selectedIds={selectedIds}
+                onToggleSelect={toggleSelect}
+                onSelectAll={selectAll}
+                onClearSelection={clearSelection}
+                onBulkUpdate={bulkUpdate}
               />
             )}
             {section === 'articles' && (
@@ -137,6 +166,9 @@ export default function AdminPage() {
             </div>
             <div className="modal-body">
               <p style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: 'var(--ink2)' }}>
+                {Array.isArray(pendingDelete.id) && pendingDelete.id.length > 1
+                  ? `${pendingDelete.id.length} éléments seront supprimés. `
+                  : ''}
                 Cette action est irréversible. Confirmer ?
               </p>
             </div>

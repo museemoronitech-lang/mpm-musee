@@ -59,15 +59,26 @@ export default function HomeClient({ photos, heroAccueil, heroNgazidja }: HomeCl
         />
         <div className="home-hero-overlay" />
         <div className="home-left">
-          <img className="hero-assoc-logo" src="/Logo_Medina_Wiratha.png" alt="Medina Wiratha" />
           <div className="sec-eyebrow">Une initiative de l'association Medina Wiratha</div>
           <div className="hero-title">
-            <div className="hero-title-top">Musée</div>
-            <div className="hero-title-de-la">de la</div>
-            <div className="hero-title-photo">Photo</div>
-            <div className="hero-title-moroni">Moroni</div>
+            <div className="hero-title-top" style={{ lineHeight: 0.9, marginBottom: 0 }}>Musée</div>
+            <div className="hero-title-de-la" style={{ lineHeight: 0.9, marginTop: '-0.35em', marginBottom: 0 }}>de la</div>
+            <div className="hero-title-photo" style={{ lineHeight: 0.9, marginTop: '0.05em', marginBottom: 0 }}>Photo</div>
+            <img
+              className="hero-assoc-logo hero-title-logo"
+              src="/Logo_Medina_Wiratha.png"
+              alt="Medina Wiratha"
+              style={{
+                display: 'block',
+                width: 'auto',
+                height: 'clamp(110px, 22vw, 270px)',
+                maxWidth: '100%',
+                objectFit: 'contain',
+                marginTop: '-1.6rem',
+              }}
+            />
           </div>
-          <p className="home-desc">Plateforme de préservation et de valorisation du patrimoine photographique des Comores. Des images qui racontent une civilisation insulaire unique, de 1880 à aujourd'hui.</p>
+          <p className="home-desc">Le Musée de la Photo Medina Wiratha est la plateforme de préservation et de valorisation du patrimoine photographique des Comores. Des images qui racontent une civilisation insulaire unique, de 1880 à aujourd'hui.</p>
           <div className="home-cta-row">
             <Link className="btn-solid" href="/collections"><span>Explorer les archives</span></Link>
             <Link className="btn-outline-light" href="/about">Découvrir le musée</Link>
@@ -145,7 +156,7 @@ export default function HomeClient({ photos, heroAccueil, heroNgazidja }: HomeCl
       <div className="about-section reveal">
         <div className="about-text">
           <div className="about-big">Préserver<br />ce qui <span>disparaît</span></div>
-          <p className="about-p">Le Musée de la Photographie de Moroni est un projet culturel initié par <strong>Médina Wiratha</strong> — dont le nom signifie <em>« la Médina en héritage »</em> — association fondée en août 2024 pour protéger, valoriser et préserver le patrimoine historique de la commune de Moroni et des Comores.</p>
+          <p className="about-p">Le Musée de la Photo Medina Wiratha est un projet culturel initié par <strong>Médina Wiratha</strong> — dont le nom signifie <em>« la Médina en héritage »</em> — association fondée en août 2024 pour protéger, valoriser et préserver le patrimoine historique de la commune de Moroni et des Comores.</p>
           <p className="about-p">L'objectif de l'association Médina Wiratha c'est de protéger l'héritage de la Médina et mettre en valeur cet héritage. L'association regroupe des citoyens passionnés et amoureux de cet héritage du patrimoine culturel matériel et immatériel afin de perpétuer la mémoire de la ville de Moroni et autres à travers les générations. C'est ainsi qu'il est important de récolter toutes les images en notre possession afin de les sauvegarder et les mettre à la disposition du public.</p>
           <div className="about-logo-row">
             <img className="about-logo-img" src="/Logo_Medina_Wiratha.png" alt="Medina Wiratha" />

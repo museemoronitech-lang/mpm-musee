@@ -20,7 +20,7 @@ export default function Footer() {
             }}
           />
           <p className="footer-desc">
-            Musée de la Photographie de Moroni.
+            Musée de la Photo Medina Wiratha.
             <br />
             Archives photographiques des Comores,
             <br />
@@ -34,6 +34,8 @@ export default function Footer() {
           <div className="footer-col-title">Collections</div>
           <Link className="footer-link" href="/collections?tab=periode">Par Période</Link>
           <Link className="footer-link" href="/collections?tab=auteurs">Par Photographe</Link>
+          <Link className="footer-link" href="/collections?tab=collections">Par Collection</Link>
+          <Link className="footer-link" href="/collections?tab=sources">Par Source</Link>
         </div>
         <div className="footer-col">
           <div className="footer-col-title">Musée</div>
@@ -48,7 +50,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer-bottom">
-        <span className="footer-copy">© 2025 Musée de la Photographie de Moroni · Medina Wiratha · Seaview Artwork</span>
+        <span className="footer-copy">© 2025 Musée de la Photo Medina Wiratha · Seaview Artwork</span>
         <span className="footer-udata">
           Développé par <a href="#">U-DATA</a>
         </span>

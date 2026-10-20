@@ -50,9 +50,9 @@ export default function Nav() {
           />
           <div className="nav-sep" />
           <div className="nav-full">
-            Musée de la
+            Musée de la Photographie
             <br />
-            Photographie de Moroni
+            Medina Wiratha
           </div>
         </Link>
         <div className="nav-vsep" />

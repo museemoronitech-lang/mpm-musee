@@ -6,7 +6,9 @@ export interface Photo {
   periode: string
   ref_code: string
   status: 'pub' | 'draft'
-  author: string
+  author: string // photographe
+  collection?: string
+  source?: string // ex. « Musée de … »
   context: string
   created_at: string
   featured?: boolean
